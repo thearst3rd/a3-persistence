@@ -11,7 +11,7 @@ const fetchChats = function(first) {
   })
   .then(res =>
   {
-    console.log(res)
+    //console.log(res)
     if (res.status !== 200)
     {
       alert("Authentication failed, please log in!")
@@ -23,7 +23,7 @@ const fetchChats = function(first) {
   })
   .then(resJson =>
   {
-    console.log(resJson)
+    //console.log(resJson)
     
     lastUpdatedTime = new Date()
 
@@ -65,8 +65,8 @@ const updateChats = function()
   })
   .then(resJson =>
   {
-    console.log("lastUpdatedData: ", resJson.lastUpdatedData)
-
+    //console.log("lastUpdatedData: ", resJson.lastUpdatedData)
+    
     // See if there are any more chats than there were before:
     if (new Date(resJson.lastUpdatedData).getTime() > lastUpdatedTime.getTime())
       fetchChats(false)
@@ -102,7 +102,7 @@ newChatForm.onsubmit = function(event)
   .then(res => res.json())
   .then(json =>
   {
-    console.log(json)
+    //console.log(json)
     newChatContents.value = ""
   })
   .catch(err =>
@@ -119,20 +119,20 @@ const chatContents = document.getElementById("chat-contents")
 const buildChatTable = function(chats, username)
 {
   let htmlStr = ""
-
+  
   for (const n in chats)
   {
     const chat = chats[n]
     
     let lineStr = ""
     lineStr += "<tr>"
-
+    
     lineStr += "<th class=\"chat-username\">" + chat.username + "</th>"
     lineStr += "<th class=\"chat-contents\">" + chat.contents + "</th>"
-
+    
     const timeDate = new Date(chat.time)
     const timeStr = timeDate.toLocaleDateString() + "<br/>" + timeDate.toLocaleTimeString()
-
+    
     lineStr += "<th class=\"chat-timestamp\">" + timeStr + "</th>"
     
     if (chat.username === username)
@@ -142,7 +142,11 @@ const buildChatTable = function(chats, username)
       lineStr += "<button onclick=\"editMessage('" + chat.uuid + "')\">Edit</button>"
       lineStr += "</th>"
     }
-
+    else
+    {
+      lineStr += "<th></th>"
+    }
+    
     lineStr += "</tr>"
     
     // NOTE: this is done backwards so that newer chats appear on the top
@@ -181,6 +185,9 @@ const editMessage = function(uuid)
   if (newContents === null)
     return
   
+  if (newContents.length > 500)
+    newContents = newContents.substr(0, 499)
+  
   fetch("/editchat",
   {
     "method": "POST",
@@ -193,7 +200,7 @@ const editMessage = function(uuid)
     headers: {"Content-Type": "application/json"}
   })
   .then(res => res.json())
-  .then(console.log)
+  //.then(console.log)
   .catch(err =>
   {
     alert("Failed to edit message")
