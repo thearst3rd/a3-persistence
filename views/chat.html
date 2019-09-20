@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8">
     <title>CS 4241 Assignment 3</title>
     <meta name="description" content="CS 4241 Assignment 3">
-    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Milligram stylesheets -->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
@@ -29,9 +26,15 @@
     <main>
       <p class="bold">The New Chat™ Service™ for You™™™</p>
       
+      <h3>Enter your chats here:</h3>
+      <form>
+        <input name="contents" type="text" maxlength="100" placeholder="" aria-labelledby="button-chat">
+        <button type="submit" id="button-chat">Send</button>
+      </form>
+      
       <h3>CHATS</h3>
       
-      <table id="chat-contents"></table>
+      <table id="chat-contents"><tr><th>Loading chats...</th></tr></table>
     </main>
     
     <footer>

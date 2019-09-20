@@ -25,9 +25,15 @@ loginForm.onsubmit = function(event)
   .then(res =>
   {
     if (res.redirected)
+    {
       window.location.href = res.url
+    }
     else
-    alert("Authentication failed, bad username or password")
+    {
+      alert("Authentication failed, bad username or password")
+      loginUsernameInput.value = ""
+      loginPasswordInput.value = ""
+    }
   })
 }
 
@@ -54,9 +60,16 @@ signupForm.onsubmit = function(event)
     headers: {"Content-Type": "application/json"}
   })
   .then(res => res.json())
-  .then(console.log)
+  .then(json =>
+  {
+    alert("Account successfully created! Please log in.")
+    signupUsernameInput.value = ""
+    signupPasswordInput.value = ""
+  })
   .catch(err =>
   {
     alert("Account creation failed, choose a different username!")
+    signupUsernameInput.value = ""
+    signupPasswordInput.value = ""
   })
 }
