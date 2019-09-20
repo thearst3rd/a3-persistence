@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/style.css">
     
     <!-- import the webpage's client-side javascript file -->
-    <script src="/client.js" defer></script>
+    <script src="/chat-client.js" defer></script>
   </head>
   <body>
     <header>
@@ -29,22 +29,9 @@
     <main>
       <p class="bold">The New Chat™ Service™ for You™™™</p>
       
-      <h3>Returning members, please log in:</h3>
+      <h3>CHATS</h3>
       
-      <form>
-        <input name="username" type="text" maxlength="100" placeholder="Username" aria-labelledby="button-login">
-        <input name="password" type="password" maxlength="100" placeholder="Password" aria-labelledby="button-login">
-        <button type="submit" id="button-login">Login</button>
-      </form>
-      
-      <h3>New members, please create a new account!</h3>
-      <p><i>Note, don't use a real password that you care about because it gets stored in plain text and I can view it :)</i></p>
-      
-      <form>
-        <input name="username" type="text" maxlength="100" placeholder="Choose a username" aria-labelledby="button-login">
-        <input name="password" type="password" maxlength="100" placeholder="Choose a password" aria-labelledby="button-login">
-        <button type="submit" id="button-signup">Sign up</button>
-      </form>
+      <table id="chat-contents"></table>
     </main>
     
     <footer>
