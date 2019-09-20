@@ -4,3 +4,4 @@ package-lock.json
 .gitconfig
 .glitch-assets
 shrinkwrap.yaml
+db.json
